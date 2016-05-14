@@ -23,7 +23,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.0',
+    version=__import__('b2upload').__version__,
 
     description='backblaze folder uploader',
     long_description=long_description,
@@ -74,9 +74,11 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
+    requires=['docopt', 'cerberus', 'b2'],
     install_requires=[
                     'docopt>=0.6.2',
-                    'cerberus>=0.9.2'
+                    'cerberus>=0.9.2',
+                    'b2>=0.5.6'
                     ],
 
     # List additional groups of dependencies here (e.g. development
@@ -106,7 +108,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'sample=sample:main',
+            'b2upload=b2upload.b2upload:main',
         ],
     },
 )

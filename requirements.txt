@@ -1,3 +1,0 @@
-python==3.5
-b2
-docopt

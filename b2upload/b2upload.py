@@ -13,17 +13,30 @@ Options:
 import os
 import sys
 import subprocess
-import configparser
+
 import json
+
+import configparser                     # py3
 
 import cerberus
 from cerberus import Validator
 from docopt import docopt
 
+
+
 def read_conf():
     config = configparser.ConfigParser()
-    config.read('.backblaze')
-    return config['backblaze']
+    homedir = os.path.expanduser('~')
+    conf_file = os.path.join(homedir, '.backblaze')
+
+    if not os.path.isfile(conf_file):
+        print('can not find .backblaze configuration file in your home director (checked : {})'.format(homedir))
+        print('Please check the readme')
+        sys.exit(1)
+
+    config.read(conf_file)
+
+    return config['backblaze']  ## py3
 
 def cerberus_validation(schema, kwargs):
     """
@@ -51,7 +64,7 @@ def execute_command(command, stdout=subprocess.PIPE):
     return retval
 
 def is_authorized():
-    return execute_command('list_buckets')
+    return execute_command('list_buckets', subprocess.DEVNULL)
 
 def decode_list_buckets(completed):
     list_buckets = completed.stdout.decode('utf-8').split('\n')
@@ -71,7 +84,7 @@ def authorize(config):
     return execute_command(cmd)
 
 
-def main(bucket, directory, config):
+def upload_folder(bucket, directory, config):
 
     if not is_authorized():
         res = authorize(config)
@@ -108,7 +121,8 @@ def main(bucket, directory, config):
 
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+def main():
     arguments = docopt(__doc__, version='b2 uploader 1.0')
 
     schema = Validator({
@@ -125,4 +139,7 @@ if __name__ == "__main__":
     if not directory:
         directory = os.getcwd()
 
-    main(bucket=bucket, directory=directory, config=config)
+    upload_folder(bucket=bucket, directory=directory, config=config)
+
+if __name__ == "__main__":
+    main()
