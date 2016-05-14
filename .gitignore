@@ -1,3 +1,7 @@
 *.pyc
 __pycache__
+b2upload.egg-info/
+build/
+dist/
+
 .backblaze
