@@ -1,29 +1,36 @@
-# BackBlaze Backup
+B2 upload - a script to backup a folder to BackBlaze
+====================================================
 
-pushes the content of a folder (and all its subdirectories) to [backblaze](https://www.backblaze.com/)
+b2upload pushes the content of a folder (and all its subdirectories) to backblaze_
 
-## Set up
+It will authenticate you, create the bucket if needed, and push only files that are not already present in the backblaze bucket.
 
-install b2upload
+Set up
+------
 
-`pip install b2upload`
+- install b2upload
 
-create a `.backblaze` in your home directory
-it should contain the following :
+``pip install b2upload``
 
-```
-[backblaze]
-accountId = <your-account-id>
-applicationKey = <your-application-key>
-```
+- create a ``.backblaze`` in your home directory
+it should contain the following::
+
+	[backblaze]
+	accountId = <your-account-id>
+	applicationKey = <your-application-key>
 
 
-## usage
 
-to upload all files and subfolders of the current directory
+Usage
+-----
 
-`b2upload --bucket <bucket-name>`
+- to upload all files and subfolders of the current directory
 
-to upload all files and subfolders of a specific directory
+``b2upload --bucket <bucket-name>``
 
-`b2upload --bucket <bucket-name> --directory <absolute-path-to-dir>`
+- to upload all files and subfolders of a specific directory
+
+``b2upload --bucket <bucket-name> --directory <absolute-path-to-dir>``
+
+
+.. _backblaze: https://www.backblaze.com/
