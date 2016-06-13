@@ -43,7 +43,7 @@ def cerberus_validation(schema, kwargs):
         Validates a cerberus schema
             Displays errors & raise exception if validation fails
     """
-    errors = schema.validate(kwargs)
+    schema.validate(kwargs)
 
     if not schema.validate(kwargs):
         msg = ''
@@ -108,7 +108,7 @@ def upload_folder(bucket, directory, config):
     list_files = decode_list_files(execute_command('list_file_names {}'.format(bucket)))
 
 
-    for root, dirnames, filenames in os.walk(directory):
+    for root, _, filenames in os.walk(directory):
         if filenames:
             for fname in filenames:
                 fullpath = os.path.join(root, fname)

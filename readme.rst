@@ -1,6 +1,10 @@
 B2 upload - a script to backup a folder to BackBlaze
 ====================================================
 
+.. image:: https://landscape.io/github/niparis/backblaze-backup/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/niparis/backblaze-backup/master
+   :alt: Code Health
+
 b2upload pushes the content of a folder (and all its subdirectories) to backblaze_
 
 It will authenticate you, create the bucket if needed, and push only files that are not already present in the backblaze bucket.
@@ -12,7 +16,7 @@ Set up
 
 ``pip install b2upload``
 
-- create a ``.backblaze`` in your home directory
+- create a ``.backblaze`` file in your home directory
 it should contain the following::
 
 	[backblaze]
