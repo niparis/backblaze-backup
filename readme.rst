@@ -9,6 +9,8 @@ b2upload pushes the content of a folder (and all its subdirectories) to backblaz
 
 It will authenticate you, create the bucket if needed, and push only files that are not already present in the backblaze bucket.
 
+_python 3.5+ only_
+
 Set up
 ------
 
@@ -36,5 +38,12 @@ Usage
 
 ``b2upload --bucket <bucket-name> --directory <absolute-path-to-dir>``
 
+Example crontab
+--------------
+
+For daily upload, assuming 
+```
+46 * * * * export PATH="$venv-path:$PATH" && b2upload --bucket <bucket> --directory $backup-dir > $backup-dir/cron.log && curl $monitoringendpoint
+```
 
 .. _backblaze: https://www.backblaze.com/

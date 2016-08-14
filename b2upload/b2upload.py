@@ -12,7 +12,7 @@ Options:
 """
 import os
 import sys
-import subprocess
+import subprocess                       # py3.5
 
 import json
 
@@ -118,6 +118,8 @@ def upload_folder(bucket, directory, config):
                     execute_command(cmd)
                 else:
                     print('{} already uploaded. skipping...'.format(fname))
+
+    print('upload over !!')
 
 
 
