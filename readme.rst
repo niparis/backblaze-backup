@@ -41,7 +41,8 @@ Usage
 Example crontab
 --------------
 
-For daily upload, assuming 
+For daily upload, assuming a virtual environment at $venv-path :
+
 ```
 46 * * * * export PATH="$venv-path:$PATH" && b2upload --bucket <bucket> --directory $backup-dir > $backup-dir/cron.log && curl $monitoringendpoint
 ```
